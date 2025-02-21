@@ -1,10 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>과일 가게</title>
+    <style>
+        /* 페이지 기본 스타일 */
+        .main-page {
+          background-color: green;
+
+          display: flex; /* 플렉스박스를 사용하여 텍스트와 이미지를 나란히 배치 */
+          align-items: center; /* 세로 가운데 정렬 */
+          justify-content: center; /* 가로 가운데 정렬 */
+          padding: 20px;
+        }
+
+
+
+
+        /* 갤러리 영역 */
+        .gallery-container {
+          height: 600px;  /* 갤러리 영역의 높이를 키움 */
+          overflow-y: auto;  /* 세로 스크롤 활성화 */
+          padding: 20px;
+          display: flex;
+          justify-content: center; /* 수평 가운데 정렬 */
+        }
+
+        /* 3x3 그리드 레이아웃 설정 */
+        .gallery {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr); /* 3개의 열 */
+          gap: 20px; /* 이미지 간 간격 */
+          max-width: 900px; /* 최대 너비를 900px로 설정 */
+          width: 100%; /* 가로 폭을 100%로 설정 */
+        }
+
+        /* 썸네일 스타일 */
+        .picture {
+          width: 200px;  /* 이미지 크기를 크게 설정 */
+          height: 200px; /* 이미지 크기를 크게 설정 */
+          margin: 10px;
+          border-radius: 8px;
+          object-fit: cover; /* 이미지 비율 유지 */
+          cursor: pointer; /* 클릭할 수 있는 표시 */
+        }
+
+        /* 팝업 스타일 */
+        .popup {
+          display: none; /* 기본적으로 숨김 */
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.8);
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .popup img {
+          width: 40%; /* 이미지 크기를 화면의 40%로 설정 */
+          height: auto; /* 비율에 맞게 높이 자동 조정 */
+          object-fit: contain; /* 이미지 비율을 유지하면서 화면을 꽉 채움 */
+          border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-$END$
+
+<!-- 메인 페이지 영역 -->
+<div class="main-page">
+    <p>안녕하세요 저희 과일 가게를 오신것을 환영합니다!<br>
+        저희 과일가게에는 싱싱한 과일을 판매합니다.<br>
+        세일도 다른 가게 보다 많이 하고 가격도 많이 저렴합니다.<br>
+        많이 놀러오세요!</p>
+    <!-- 과일 가게 이미지 추가 -->
+    <img src="images/store1.jpg" alt="과일 가게" class="fruit-store-image">
+</div>
+
+<!-- 갤러리 영역 -->
+<div class="gallery-container" id="gallery-container">
+    <div class="gallery" id="gallery">
+        <!-- 썸네일 이미지 9개 -->
+        <img src="images/Apple1.jpg" alt="Apple 1" class="picture">
+        <img src="images/Grape1.jpg" alt="Grape 1" class="picture">
+        <img src="images/Orange1.jpg" alt="Orange 1" class="picture">
+        <img src="images/Strawberry1.jpg" alt="Strawberry 1" class="picture">
+        <img src="images/Banana1.jpg" alt="Banana 1" class="picture">
+        <img src="images/Melon1.jpg" alt="Melon 1" class="picture">
+        <img src="images/Oriental melon1.jpg" alt="Oriental melon 1" class="picture">
+        <img src="images/Water melon1.jpg" alt="Water melon 1" class="picture">
+        <img src="images/Kiwi1.jpg" alt="Kiwi 1" class="picture">
+    </div>
+</div>
+
+<!-- 팝업 창 -->
+<div class="popup" id="popup">
+    <img id="popup-image" src="" alt="Popup Image">
+</div>
+
+<script>
+    // 썸네일 이미지 클릭 시 팝업 띄우기
+    const pictures = document.querySelectorAll('.picture');
+    const popup = document.getElementById('popup');
+    const popupImage = document.getElementById('popup-image');
+
+    pictures.forEach(picture => {
+        picture.addEventListener('click', () => {
+            const imageSrc = picture.src;
+            popupImage.src = imageSrc; // 클릭한 썸네일의 이미지를 팝업에 설정
+            popup.style.display = 'flex'; // 팝업을 보이도록 설정
+        });
+    });
+
+    // 팝업 외부 클릭 시 팝업 숨기기 (팝업 내부 클릭은 제외)
+    window.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            popup.style.display = 'none'; // 팝업 숨기기
+        }
+    });
+</script>
+
 </body>
 </html>
