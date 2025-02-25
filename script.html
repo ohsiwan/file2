@@ -7,16 +7,14 @@
 
         .main-page {
           background-color: green;
-
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 20px;
+          border: 5px solid #ffcc00;
+          border-radius: 10px;
+          margin: 20px;
         }
-
-
-
-
 
         .gallery-container {
           height: 600px;
@@ -24,8 +22,10 @@
           padding: 20px;
           display: flex;
           justify-content: center;
+          border: 5px solid #ffcc00;
+          border-radius: 10px;
+          margin-top: 20px;
         }
-
 
         .gallery {
           display: grid;
@@ -35,7 +35,6 @@
           width: 100%;
         }
 
-
         .picture {
           width: 200px;
           height: 200px;
@@ -44,7 +43,6 @@
           object-fit: cover;
           cursor: pointer;
         }
-
 
         .popup {
           display: none;
@@ -65,24 +63,25 @@
           object-fit: contain;
           border-radius: 8px;
         }
+
+        /* 메인 페이지 텍스트 글자 크기 변경 */
+        .main-page p {
+            font-size: 24px; 
+        }
     </style>
 </head>
 <body>
-
 
 <div class="main-page">
     <p>안녕하세요 저희 과일 가게를 오신것을 환영합니다!<br>
         저희 과일가게에는 싱싱한 과일을 판매합니다.<br>
         세일도 다른 가게 보다 많이 하고 가격도 많이 저렴합니다.<br>
         많이 놀러오세요!</p>
-    <!-- 과일 가게 이미지 추가 -->
     <img src="images/store1.jpg" alt="과일 가게" class="fruit-store-image">
 </div>
 
-
 <div class="gallery-container" id="gallery-container">
     <div class="gallery" id="gallery">
-
         <img src="images/Apple1.jpg" alt="Apple 1" class="picture">
         <img src="images/Grape1.jpg" alt="Grape 1" class="picture">
         <img src="images/Orange1.jpg" alt="Orange 1" class="picture">
@@ -95,13 +94,11 @@
     </div>
 </div>
 
-
 <div class="popup" id="popup">
     <img id="popup-image" src="" alt="Popup Image">
 </div>
 
 <script>
-
     const pictures = document.querySelectorAll('.picture');
     const popup = document.getElementById('popup');
     const popupImage = document.getElementById('popup-image');
@@ -113,7 +110,6 @@
             popup.style.display = 'flex';
         });
     });
-
 
     window.addEventListener('click', (event) => {
         if (event.target === popup) {
